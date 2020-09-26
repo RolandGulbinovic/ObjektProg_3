@@ -7,14 +7,15 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
+using std::vector;
 
 struct studentas{
-	string Vardas;
-	string Pav;
-	int nd[10];
-	int egz;
-	int sk;
-	float GP=0;
+	string Vardas[10];
+	string Pav[10];
+	int nd[10][15];
+	int egz[10];
+	int sk[10];
+	float GP[10];
 };
 
 void insertionSort(int arr[], int n);
@@ -24,42 +25,53 @@ double findMedian(int a[], int n);
 int main()
 {
 	studentas Eil; studentas Eil_mas[5];
+	vector<studentas> Eiles;
+
+	for (int i = 0; i < 10; i++) Eil.GP[i] = 0;
+
 	int n;
 	int sk;
-	cout << "Iveskite studenta varda ir pavarde, namu darbu ir egzamino rezultatus" << endl;
-	cin >> Eil.Vardas >> Eil.Pav;
-	cout << "Iveskite namu darbu skaiciu" << endl;
-	cin >> n;
-	for (int i = 0; i < n ; i++)
-	{
-		cin >> Eil.nd[i];
-		Eil.GP = Eil.nd[i]+Eil.GP;
-	}
-	cout << "Iveskite egzamino rez." << endl;
-	cin >> Eil.egz;
+	int l;
+	cout << "Iveskite studentu skaiciu" << endl;
+	cin >> l;
+	for (int i = 0; i < l; i++) {
 
-	cout << "norite medianas(1) ar GP(2)" << endl;
-	cin >> sk;
-	if (sk == 2)
-	{
-		Eil.GP = Eil.GP / (float)n;
-		Eil.GP = 0.4 * Eil.GP + 0.6 * Eil.egz;
-		
-		cout << Eil.Vardas << " " << Eil.Pav << " "; //Isvedimas
-		printf("%.2f", Eil.GP); //GP skaiciavumas
-	}
-	else {
-		Eil.nd[n] = Eil.egz;
-		
-		insertionSort(Eil.nd , n+1);
-		cout << Eil.Vardas << " " << Eil.Pav <<" "<< findMedian(Eil.nd, n + 1) <<endl;
+		cout << "Iveskite studenta varda ir pavarde" << endl;
+		cin >> Eil.Vardas[i] >> Eil.Pav[i];
+		cout << "Iveskite namu darbu skaiciu" << endl;
+		cin >> n;
+		for (int j = 0; j < n; j++)
+		{
+			cin >> Eil.nd[i][j];
+			Eil.GP[i] = Eil.nd[i][j] + Eil.GP[i];
+		}
+		cout << "Iveskite egzamino rez." << endl;
+		cin >> Eil.egz[i];
 
+		cout << "norite medianas(1) ar GP(2)" << endl;
+		cin >> sk;
+		if (sk == 2)
+		{
+			Eil.GP[i] = Eil.GP[i] / (float)n;
+			Eil.GP[i] = 0.4 * Eil.GP[i] + 0.6 * (float)Eil.egz[i]; //GP skaiciavumas
+		}
+		else {
+			/*Eil.nd[n] = Eil.egz;
+
+			insertionSort(Eil.nd , n+1);
+			cout << Eil.Vardas << " " << Eil.Pav <<" "<< findMedian(Eil.nd, n + 1) <<endl;
+			*/
+		}
 	}
-	
+	for (int i = 0; i < l; i++) {
+		cout << Eil.Vardas[i] << " " << Eil.Pav[i] << " "; //Isvedimas
+		printf("%.2f", Eil.GP[i]);
+		cout << endl;
+	}
 }
 
 /* Function to sort an array using insertion sort*/
-void insertionSort(int arr[], int n)
+/*void insertionSort(int arr[], int n)
 {
 	int i, key, j;
 	for (i = 1; i < n; i++)
@@ -69,7 +81,7 @@ void insertionSort(int arr[], int n)
 
 		/* Move elements of arr[0..i-1], that are
 		greater than key, to one position ahead
-		of their current position */
+		of their current position 
 		while (j >= 0 && arr[j] > key)
 		{
 			arr[j + 1] = arr[j];
@@ -93,4 +105,4 @@ double findMedian(int a[], int n)
 		return (double)a[n / 2];
 
 	return (double)(a[(n - 1) / 2] + a[n / 2]) / 2.0;
-}
+}*/
