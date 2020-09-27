@@ -30,11 +30,10 @@ struct studentas {
 int main()
 {
 
-	studentas Eil_mas[5];
-	vector<studentas> Eiles;
 	int n;
 	int sk;
 	int l=0;
+	int t;
 	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
 	cin >> sk;
 
@@ -56,11 +55,21 @@ int main()
 		cin >> Eil[i].Vardas >> Eil[i].Pav;
 		cout << "Iveskite namu darbu skaiciu" << endl;
 		cin >> n;
-		cout << "Prasome ivesti visus namu darbu pazymius" << endl;
-		for (int j = 0; j < n; j++)
-		{
-			cin >> Eil[i].nd[j];
-			Eil[i].GP = Eil[i].nd[j] + Eil[i].GP;
+		cout << "Uzpildyti automatiskai? (random) 1- Taip/2 - NE" << endl;
+		cin >> t;
+		if (t == 1) {
+			for (int j = 0; j < n; j++) {
+				Eil[i].nd[j] = rand() % 11;
+				Eil[i].GP = Eil[i].nd[j] + Eil[i].GP;
+			}
+		}
+		else {
+			cout << "Prasome ivesti visus namu darbu pazymius" << endl;
+			for (int j = 0; j < n; j++)
+			{
+				cin >> Eil[i].nd[j];
+				Eil[i].GP = Eil[i].nd[j] + Eil[i].GP;
+			}
 		}
 		cout << "Iveskite egzamino rez." << endl;
 		cin >> Eil[i].egz;
