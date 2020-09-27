@@ -15,6 +15,7 @@ using std::sort;
 using std::setw;
 using std::setprecision;
 using std::fixed;
+using std::rand;
 
 struct studentas {
 	string Vardas;
@@ -34,6 +35,7 @@ int main()
 	int n;
 	int sk;
 	int l = 0;
+	int t;
 	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
 	cin >> sk;
 
@@ -51,12 +53,23 @@ int main()
 		cin >> laik.Vardas >> laik.Pav;
 		cout << "Iveskite namu darbu skaiciu" << endl;
 		cin >> n;
-		cout << "Prasome ivesti visus namu darbu pazymius" << endl;
-		for (int j = 0; j < n; j++)
-		{
-			cin >> laik.nd[j];
-			laik.GP = laik.nd[j] + laik.GP;
+		cout << "Uzpildyti automatiskai? (random) 1- Taip/2 - NE" << endl;
+		cin >> t;
+		if (t == 1) {
+			for (int j = 0; j < n; j++) {
+				laik.nd[j] = rand() % 11;
+				laik.GP = laik.nd[j] + laik.GP;
+			}
 		}
+		else {
+			cout << "Prasome ivesti visus namu darbu pazymius" << endl;
+			for (int j = 0; j < n; j++)
+			{
+				cin >> laik.nd[j];
+				laik.GP = laik.nd[j] + laik.GP;
+			}
+		}
+		
 		cout << "Iveskite egzamino rez." << endl;
 		cin >> laik.egz;
 
