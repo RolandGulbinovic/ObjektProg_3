@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <functional>
 #include <array>
-
+#include <iomanip>
 
 using std::cout;
 using std::endl;
@@ -12,6 +12,9 @@ using std::string;
 using std::cin;
 using std::vector;
 using std::sort;
+using std::setw;
+using std::setprecision;
+using std::fixed;
 
 struct studentas {
 	string Vardas[10];
@@ -32,7 +35,7 @@ int main()
 	int n;
 	int sk;
 	int l;
-	cout << "norite medianas(1) ar GP(2)" << endl;
+	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
 	cin >> sk;
 
 	for (int i = 0; i < 10; i++) {
@@ -43,12 +46,13 @@ int main()
 	
 	cout << "Iveskite studentu skaiciu" << endl;
 	cin >> l;
-	for (int i = 0; i < l; i++) {
+	for (int i = 1; i <= l; i++) {
 
-		cout << "Iveskite studenta varda ir pavarde" << endl;
+		cout << "Iveskite "<< i <<"-ojo studento varda ir pavarde" << endl;
 		cin >> Eil.Vardas[i] >> Eil.Pav[i];
 		cout << "Iveskite namu darbu skaiciu" << endl;
 		cin >> n;
+		cout << "Prasome ivesti visus namu darbu pazymius" << endl;
 		for (int j = 0; j < n; j++)
 		{
 			cin >> Eil.nd[i][j];
@@ -72,18 +76,16 @@ int main()
 		}
 	}
 
-
-
-	for(int i=0;i<l;i++){
+	for(int i=1;i<=l;i++){
 		if (sk == 2)
 		{
-			cout << Eil.Vardas[i] << " " << Eil.Pav[i] << " "; //Isvedimas
-			printf("%.2f", Eil.GP[i]);
+			cout << "Vardas" << setw(15) << "Pavarde" << setw(20) << "Galutinis Paz"<< endl;
+			cout << Eil.Vardas[i] << setw(15) << Eil.Pav[i] << setw(15) << fixed << setprecision(2) << Eil.GP[i]; ; //Isvedimas
 			cout << endl;
 		}
 		else {
-			cout << Eil.Vardas[i] << " " << Eil.Pav[i] << " "; //Isvedimas
-			printf("%.2f", Eil.Med[i]);
+			cout << "Vardas" << setw(15) << "Pavarde" << setw(10) << "Galutinis Paz"<< setw(20) << endl;
+			cout << Eil.Vardas[i] << setw(15) << Eil.Pav[i] << setw(15) << fixed << setprecision(2) << Eil.Med[i]; //Isvedimas
 			cout << endl;
 		}
 	}
