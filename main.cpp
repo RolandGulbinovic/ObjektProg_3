@@ -31,22 +31,35 @@ struct studentas {  //Sukuriu struktura
 int main()
 {
 
-	int n; // n - Namų darbų skaičius
 	int sk; // sk - Mediana arba Galutinis pažymis
-	int l=0; // l - Norimas studentų kiekis
+	int l = 0; // l - Norimas studentų kiekis
 	int t; // t - Ar norite užpildyti automatiškai duomenis apie namu darbus
 
 	cout << "Norite gauti studentu Mediana(1) ar Galutini pazymi(2)" << endl;
-	cin >> sk;
+
+	while (!(cin >> sk))
+	{
+
+			cout << "error: ne skaicius ";
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+
+	}
+		
 	
 	
 	cout << "Iveskite studentu skaiciu" << endl;
-	cin >> l; 
 
+	while (!(cin >> l))
+	{
+		cout << "error: ne skaicius ";
 
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+	}
 
 	studentas* Eil = new studentas [l];
-	
+	studentas* temp = new studentas[l + 1];
 
 	for (int i = 0; i < l; i++) { // Pasidarau tusčius masyvus
 		Eil[i].GP = 0;
@@ -55,14 +68,36 @@ int main()
 
 	for (int i = 0; i < l; i++) {
 		// pildau duomenis
+		int n = 0;
+		temp[i].nd = new int[n + 1];
+
 		cout << "Iveskite "<< i+1 <<"-ojo studento varda ir pavarde" << endl;
 		cin >> Eil[i].Vardas >> Eil[i].Pav;
-		cout << "Iveskite namu darbu skaiciu" << endl;
-		cin >> n;
-		Eil[i].nd = new int[n];
+
+		while (!(typeid(Eil[i].Vardas) == typeid(string)))
+		{
+			cout << "error: ne skaicius ";
+
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
+
+
+		
 		cout << "Uzpildyti automatiskai? (random) 1- Taip || 2 - NE" << endl;
-		cin >> t;
+
+		while (!(cin>>t))
+		{
+			cout << "error: ne skaicius ";
+
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
+
+		Eil[i].nd = new int[n+1];
 		if (t == 1) {
+			cout << "Kiek norite sugeneruoti pazymiu" << endl;
+				cin >> n;
 			for (int j = 0; j < n; j++) {
 				Eil[i].nd[j] = rand() % 11; // (% 11) kad sugeneruotas skaičius butu tarp 0 iki 10
 				Eil[i].GP = Eil[i].nd[j] + Eil[i].GP;
@@ -70,14 +105,42 @@ int main()
 		}
 		else {
 			cout << "Prasome ivesti visus namu darbu pazymius" << endl;
-			for (int j = 0; j < n; j++)
+			for (int i = 0; i < l; i++)
+				temp[i] = Eil[i];
+
+			while (true)
 			{
-				cin >> Eil[i].nd[j];
-				Eil[i].GP = Eil[i].nd[j] + Eil[i].GP;
+				cin >> temp[i].nd[n];
+				if (temp[i].nd[n] >= 0) {
+					delete[] Eil;
+					n++;
+					studentas *Eil = new studentas[l];
+					Eil[i].nd = new int[n];
+					temp[i].GP = temp[i].nd[n] + temp[i].GP;
+					for (int i = 0; i < l; i++)
+						Eil[i] = temp[i];
+
+
+				}
+				else {
+					cin.clear();
+					cin.ignore(INT_MAX, '\n');
+					break;
+				}
+				
 			}
 		}
 		cout << "Iveskite egzamino rez." << endl;
-		cin >> Eil[i].egz;
+
+		while (!(cin >> Eil[i].egz))
+		{
+			cout << "ERROR: ne skaicius " << endl;
+
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
+		
+
 
 		if (sk == 2)
 		{
@@ -88,6 +151,7 @@ int main()
 			Eil[i].nd[n] = Eil[i].egz; // Pridedu egz rezultata į nd masyva kaip paskutini elementa
 			sort(Eil[i].nd, Eil[i].nd + (n + 1));  //rušiuoju
 			//skaičiuoju mediana
+			
 			if (n + 1 % 2 != 0)
 				Eil[i].Med = (float)Eil[i].nd[(n + 1) / 2];	
 
@@ -98,9 +162,9 @@ int main()
 
 	//Spausdinimas i terminala rezultatu
 	
-	if (sk == 2) cout << "Vardas" << setw(15) << "Pavarde" << setw(20) << "Galutinis Paz(vid.)" << endl;
+	if (sk == 2) cout << "Vardas" << setw(20) << "Pavarde" << setw(25) << "Galutinis Paz(vid.)" << endl;
 
-	else cout << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis Paz(med.)" << endl;
+	else cout << "Vardas" << setw(20) << "Pavarde" << setw(25) << "Galutinis Paz(med.)" << endl;
 
 	for(int i=0;i<l;i++){
 		if (sk == 2)
