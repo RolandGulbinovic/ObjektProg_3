@@ -27,6 +27,7 @@ struct studentas {
 };
 
 
+// VERSIJA SU VEKTORIAIS
 
 int main()
 {
@@ -35,11 +36,24 @@ int main()
 	int l = 0;
 	int t;
 	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
-	cin >> sk;
+
+	while (!(cin >> sk) || (sk != 1 && sk != 2))
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "ERORR: Ivesti galima tik 1 arba 2" << endl;
+
+	}
 
 
 	cout << "Iveskite studentu skaiciu" << endl;
-	cin >> l;
+	while (!(cin >> l) || l <= 0)
+	{
+		cout << "ERROR: Ivestas klaidingas skaicius " << endl;
+
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+	}
 	Eiles.reserve(l);
 	
 
@@ -57,10 +71,21 @@ int main()
 		cout << "Iveskite " << i + 1 << "-ojo studento varda ir pavarde" << endl;
 		cin >> laik.Vardas >> laik.Pav;
 		cout << "Uzpildyti automatiskai? (random) 1- Taip/2 - NE" << endl;
-		cin >> t;
+		while (!(cin >> t) || (t != 1 && t != 2))
+		{
+			cout << "ERROR: Ivesti galima tik 1 arba 2 " << endl;
+
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
 		if (t == 1) {
-			cout << "kiek skaiciu generuoti" << endl;
-			cin >> n;
+			cout << "Kiek norite sugeneruoti skaiciu" << endl;
+			while (!(cin >> n) || n < 0)
+			{
+				cout << "ERROR:Ivestas klaidingas skaicius " << endl;
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+			}
 			for (int j = 0; j < n; j++) {
 
 				laik.nd = rand() % 11;
@@ -76,7 +101,12 @@ int main()
 			while (true)
 			{	
 				
-				cin >> laik.nd;
+				while (!(cin >> laik.nd) || (laik.nd < 0 && laik.nd != -1))
+				{
+					cout << "ERROR:Ivesta klaidingai " << endl;
+					cin.clear();
+					cin.ignore(INT_MAX, '\n');
+				}
 				if (laik.nd > 0) {
 					
 					n++;
@@ -96,11 +126,17 @@ int main()
 		}
 		
 		cout << "Iveskite egzamino rez." << endl;
-		cin >> laik.egz;
+		while (!(cin >> laik.egz) || laik.egz <= 0)
+		{
+			cout << "ERROR: ne skaicius " << endl;
+
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
 
 		if (sk == 2)
 		{
-			if (n = 0)
+			if (n == 0)
 				laik.GP = 0; //jei n=0 tai kad nedalintu is 0
 			else {
 				laik.GP = laik.GP / (float)n;
