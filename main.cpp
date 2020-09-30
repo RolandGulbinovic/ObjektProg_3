@@ -19,10 +19,10 @@ using std::fixed;
 struct studentas {  //Sukuriu struktura
 	string Vardas;
 	string Pav;
-	int* nd{};
-	int egz{};
-	float GP{};
-	float Med{};
+	int* nd;
+	int egz;
+	float GP;
+	float Med;
 };
 
 // VERSIJA SU MASYVAIS 
@@ -32,17 +32,16 @@ int main()
 {
 	int n = 0;
 	int sk; // sk - Mediana arba Galutinis pažymis
-	int l = 0; // l - Norimas studentų kiekis
+	int l; // l - Norimas studentų kiekis
 	int t; // t - Ar norite užpildyti automatiškai duomenis apie namu darbus
 
 	cout << "Norite gauti studentu Mediana(1) ar Galutini pazymi(2)" << endl;
 
-	while (cin >> sk && sk !=1 && sk!=2)
+	while (!(cin >> sk) || (sk != 1 && sk!=2))
 	{
-
-		cout << "ERROR: Ivestas klaidingas skaicius "<<endl;
-		cin.clear();
-		cin.ignore(INT_MAX, '\n');
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "ERORR: Ivesti galima tik 1 arba 2" << endl;
 
 	}
 
@@ -50,7 +49,7 @@ int main()
 
 	cout << "Iveskite studentu skaiciu" << endl;
 
-	while (cin >> l && l<=0)
+	while (!(cin >> l) || l <= 0)
 	{
 		cout << "ERROR: Ivestas klaidingas skaicius "<<endl;
 
@@ -80,9 +79,9 @@ int main()
 
 		cout << "Uzpildyti automatiskai? (random) 1- Taip || 2 - NE" << endl;
 		
-		while (cin>>t && t != 1 && t!=2)
+		while (!(cin>>t) || (t != 1 && t != 2))
 		{
-			cout << "error: ne skaicius ";
+			cout << "ERROR: Ivesti galima tik 1 arba 2 " << endl;
 
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
@@ -90,7 +89,13 @@ int main()
 
 		if (t == 1) {
 			cout << "Kiek norite sugeneruoti pazymiu" << endl;
-			cin >> n;
+			while(!(cin >> n) || n < 0)
+			{
+			cout << "ERROR:Ivestas klaidingas skaicius " << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			}
+
 			for (int j = 0; j < n; j++) {
 
 				for (int k = 0; k < l;k++) //kopijuoju duomenys iš Eil į laikina masyva temp
@@ -109,14 +114,21 @@ int main()
 			}
 		}
 		else {
-			cout << "Prasome ivesti visus namu darbu pazymius kai uzbaigete pildyti parasykite (-1)" << endl;
+			cout << "Prasome ivesti visus namu darbu pazymius kai uzbaigete pildyti iveskite -1" << endl;
 			
 			while (true)
 			{
 				for (int j = 0; j < l; j++)	//kopijuoju duomenys iš Eil į laikina masyva temp
 					temp[j] = Eil[j];
 
-				cin >> temp[i].nd[n];
+				
+				while (!(cin >> temp[i].nd[n]) || (temp[i].nd[n] < 0 && temp[i].nd[n] != -1))
+				{
+					cout << "ERROR:Ivesta klaidingai " << endl;
+					cin.clear();
+					cin.ignore(INT_MAX, '\n');
+				}
+
 				if (temp[i].nd[n] > 0) {
 					
 					delete[] Eil;	//ištrinų masyva Eil
@@ -148,7 +160,7 @@ int main()
 		}
 		cout << "Iveskite egzamino rez." << endl;
 
-		while (cin >> Eil[i].egz && Eil[i].egz <= 0)
+		while (!(cin >> Eil[i].egz) || Eil[i].egz <= 0)
 		{
 			cout << "ERROR: ne skaicius " << endl;
 
@@ -213,4 +225,5 @@ int main()
 			cout << endl;
 		}
 	}
+
 }
