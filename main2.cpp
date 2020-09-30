@@ -30,7 +30,7 @@ struct studentas {
 
 int main()
 {
-	vector<studentas> Eiles;
+	vector<studentas> Eiles; // Vektorius
 	int sk;
 	int l = 0;
 	int t;
@@ -46,8 +46,10 @@ int main()
 	for (int i = 0; i < l; i++) {
 		int n = 0;
 		studentas laik;
-		vector<int> nd;
-		nd.reserve(n);
+		vector<int> nd; //sukuriu dar viena vektoriu kur saugosiu namu darbus, kad galima butu skaiciuoti mediana ir vidurkius
+
+
+		nd.reserve(n); //rezervuoju n vietos vektoriui nd
 
 		laik.GP = 0;
 		laik.Med = 0;
@@ -79,9 +81,8 @@ int main()
 					
 					n++;
 
-					nd.reserve(n);
+					nd.reserve(n);	// Kiekviena karta kai pridedu elementa rezervuoju n++ vietos
 					laik.GP = laik.nd + laik.GP;
-					cout << laik.GP << endl;
 					nd.push_back(laik.nd);
 
 				}
@@ -99,12 +100,17 @@ int main()
 
 		if (sk == 2)
 		{
-			laik.GP = laik.GP / (float)n;
-			laik.GP = 0.4 * laik.GP + 0.6 * (float)laik.egz; //GP skaiciavumas
+			if (n = 0)
+				laik.GP = 0; //jei n=0 tai kad nedalintu is 0
+			else {
+				laik.GP = laik.GP / (float)n;
+				laik.GP = 0.4 * laik.GP + 0.6 * (float)laik.egz; //GP skaiciavumas
+			}
+			
 		}
 		else {
 
-			nd.reserve(n + 1);
+			nd.reserve(n + 1); // rezervuoju daugiau vietos nes kaip paskutini elementa pridedu egz
 
 			nd[nd.size()-1] = laik.egz;
 
@@ -115,18 +121,20 @@ int main()
 
 			laik.Med = (float)(nd[nd.size() / 2] + nd[(nd.size() + 1) / 2]) / (float)2.0;
 		}
-		Eiles.push_back(laik);
+		Eiles.push_back(laik); //Viska idedu i vektoriu
 	}
+
+	if (sk == 2) cout << "Vardas" << setw(20) << "Pavarde" << setw(25) << "Galutinis Paz(vid.)" << endl;
+
+	else cout << "Vardas" << setw(20) << "Pavarde" << setw(25) << "Galutinis Paz(med.)" << endl;
 
 	for (auto tt : Eiles) {
 		if (sk == 2)
 		{
-			cout << "Vardas" << setw(15) << "Pavarde" << setw(20) << "Galutinis Paz" << endl;
 			cout << tt.Vardas << setw(15) << tt.Pav << setw(15) << fixed << setprecision(2) << tt.GP; ; //Isvedimas
 			cout << endl;
 		}
 		else {
-			cout << "Vardas" << setw(15) << "Pavarde" << setw(10) << "Galutinis Paz" << setw(20) << endl;
 			cout << tt.Vardas << setw(15) << tt.Pav << setw(15) << fixed << setprecision(2) << tt.Med; //Isvedimas
 			cout << endl;
 		}
