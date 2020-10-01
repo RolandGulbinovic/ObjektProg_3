@@ -47,7 +47,8 @@ int main()
 	int t;
 	int n = 0;
 	string failas;
-	
+	string header;
+
 	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
 
 	while (!(cin >> sk) || (sk != 1 && sk != 2))
@@ -61,7 +62,13 @@ int main()
 	cin >> f;
 	if (f == 1)
 	{
-		inFile.open("C:/Users/rolan/Desktop/0.2v/Kursiokai.txt");
+		cout << "Kiek namu darbu jusu faile(testavimo failuose - 15; Kursiokai.txt - 5)" << endl;
+		cin >> n;
+		cout << "Iveskite failo vieta (C:/... .txt" << endl;
+		cin >> failas;
+		inFile.open(failas);
+		getline(inFile, header); //paima pirma eilute "Vardas Pavarde nd1 nd2 nd3...."
+
 		if (inFile.is_open()) {
 			while (inFile >> laik.Vardas >> laik.Pav)
 			{
@@ -69,12 +76,11 @@ int main()
 				laik.Med = 0;
 				l++;
 				Eiles.reserve(l);
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < n; i++)
 				{
 					inFile >> laik.nd;
-					n++;
 					laik.GP = laik.nd + laik.GP;
-					
+					ndf.reserve(n);
 					ndf.push_back(laik.nd);
 				}
 				inFile >> laik.egz;
@@ -238,5 +244,8 @@ int main()
 }
 bool compareByName(const studentas &a, const studentas &b)
 {
-	return a.Vardas < b.Vardas;
+	if (a.Vardas != b.Vardas)
+		return a.Vardas < b.Vardas;
+	else
+		return a.Pav < b.Pav;
 }
