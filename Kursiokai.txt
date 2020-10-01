@@ -1,3 +1,8 @@
-
-Vardas1 Pavarde1 8 9 10 6 10 9
-Vardas2 Pavarde2 7 10 8	5 4 6
+Vardas Pavarde ND1 ND2 ND3 ND4 ND5 EGZ
+Petras Petraitis 8 9 10 6 10 9
+Jonas Jonaitis 7 10 8 5 4 6
+Aivaras Jonas 10 5 4 9 3 10
+Aleksas Jonas 10 9 9 9 9 5
+Vardas1 Pavarde2 5 4 9 9 3 10
+Vardas1 Pavarde1 6 5 4 9 2 4
+Paulius Jonaitis 5 4 9 9 3 9
