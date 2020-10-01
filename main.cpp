@@ -242,7 +242,7 @@ int main()
 	}
 	Eiles.clear();
 }
-bool compareByName(const studentas &a, const studentas &b)
+bool compareByName(const studentas &a, const studentas &b) //funkcija palyginimui
 {
 	if (a.Vardas != b.Vardas)
 		return a.Vardas < b.Vardas;
