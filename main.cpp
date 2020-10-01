@@ -1,46 +1,4 @@
-/*#include <fstream>
-#include <iomanip>
 
-#include <iostream>
-
-using namespace std;
-
-struct studentas{
-	string Vardas;
-	string Pavarde;
-	int *nd;
-	int egz;
-
-};
-
-int main() {
-	ifstream inFile;
-
-	studentas* Eil = new studentas[2];
-	for (int i = 0; i < 2; i++)
-		Eil[i].nd = new int[5];
-	
-
-	inFile.open("C:/Users/rolan/Desktop/0.2v/Kursiokai.txt");
-	
-	for (int i = 0; i < 2; i++) {
-		inFile >> Eil[i].Vardas >> Eil[i].Pavarde;
-		for (int j = 0; j < 5; j++)
-			inFile >> Eil[i].nd[j];
-	
-		inFile >> Eil[i].egz;
-	}
-
-	for (int i = 0; i < 2; i++) {
-		cout<<Eil[i].Vardas <<" "<< Eil[i].Pavarde << " ";
-		for (int j = 0; j < 5; j++)
-			cout << Eil[i].nd[j] << " ";
-		cout << Eil[i].egz << endl;
-			
-	}
-
-}
-*/
 #include <iostream>
 #include <vector>
 #include <string>
@@ -61,6 +19,7 @@ using std::setprecision;
 using std::fixed;
 using std::rand;
 using std::ifstream;
+using std::left;
 
 struct studentas {
 	string Vardas;
@@ -74,6 +33,8 @@ struct studentas {
 
 // VERSIJA SU VEKTORIAIS
 
+bool compareByName(const studentas& a, const studentas& b);
+
 int main()
 {
 	vector<studentas> Eiles;
@@ -82,12 +43,11 @@ int main()
 	studentas laik;
 	int sk;
 	int f;
-	int l = 1;
+	int l = 0;
 	int t;
 	int n = 0;
 	string failas;
-
-
+	
 	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
 
 	while (!(cin >> sk) || (sk != 1 && sk != 2))
@@ -101,21 +61,20 @@ int main()
 	cin >> f;
 	if (f == 1)
 	{
-
 		inFile.open("C:/Users/rolan/Desktop/0.2v/Kursiokai.txt");
-		n = 5;
-		Eiles.reserve(2);
-		ndf.reserve(10);
 		if (inFile.is_open()) {
 			while (inFile >> laik.Vardas >> laik.Pav)
 			{
 				laik.GP = 0;
 				laik.Med = 0;
+				l++;
+				Eiles.reserve(l);
 				for (int i = 0; i < 5; i++)
 				{
 					inFile >> laik.nd;
-
+					n++;
 					laik.GP = laik.nd + laik.GP;
+					
 					ndf.push_back(laik.nd);
 				}
 				inFile >> laik.egz;
@@ -130,17 +89,14 @@ int main()
 
 				}
 				else {
- // rezervuoju daugiau vietos nes kaip paskutini elementa pridedu egz
-					ndf[ndf.size()-1] = laik.egz;
-					cout << ndf.size() << endl;
-					cout <<ndf[0]<<ndf[1]<<ndf[2]<<ndf[3] <<ndf[4] << endl;
+					ndf.push_back(laik.egz);
+					
 					sort(ndf.begin(), ndf.end());
-
 					
 					if (ndf.size() % 2 != 0)
 						laik.Med = (float)ndf[(ndf.size()) / 2];
 
-					laik.Med = (float)(ndf[ndf.size() / 2] + ndf[(ndf.size() + 1) / 2]) / (float)2.0;
+					laik.Med = (float)(ndf[(ndf.size()-1) / 2] + ndf[ndf.size() / 2]) / (float)2.0;
 				}
 				ndf.clear();
 				Eiles.push_back(laik);
@@ -249,33 +205,38 @@ int main()
 			else {
 
 				nd.reserve(n + 1); // rezervuoju daugiau vietos nes kaip paskutini elementa pridedu egz
-
-				nd[nd.size() - 1] = laik.egz;
+				
+				nd.push_back(laik.egz);
 
 				sort(nd.begin(), nd.end());
 
 				if (nd.size() % 2 != 0)
 					laik.Med = (float)nd[(nd.size()) / 2];
 
-				laik.Med = (float)(nd[nd.size() / 2] + nd[(nd.size() + 1) / 2]) / (float)2.0;
+				laik.Med = (float)(nd[(nd.size()-1) / 2] + nd[(nd.size() / 2)]) / (float)2.0;
 			}
 			Eiles.push_back(laik); //Viska idedu i vektoriu
 		}
 	}
-	if (sk == 2) cout << "Vardas" << setw(20) << "Pavarde" << setw(25) << "Galutinis Paz(vid.)" << endl;
+	if (sk == 2) cout << setw(15)<< "Vardas" << setw(15) << "Pavarde" << setw(25) << "Galutinis Paz(vid.)" << endl;
 
-	else cout << "Vardas" << setw(20) << "Pavarde" << setw(25) << "Galutinis Paz(med.)" << endl;
+	else cout << setw(15)<< "Vardas" << setw(15) << "Pavarde" << setw(25) << "Galutinis Paz(med.)" << endl;
 
+	sort(Eiles.begin(), Eiles.end(), compareByName);
 	for (auto tt : Eiles) {
 		if (sk == 2)
 		{
-			cout << tt.Vardas << setw(15) << tt.Pav << setw(15) << fixed << setprecision(2) << tt.GP; ; //Isvedimas
+			cout <<setw(15)<< tt.Vardas << setw(15) << tt.Pav << setw(25) << fixed << setprecision(2) << tt.GP; ; //Isvedimas
 			cout << endl;
 		}
 		else {
-			cout << tt.Vardas << setw(15) << tt.Pav << setw(15) << fixed << setprecision(2) << tt.Med; //Isvedimas
+			cout << setw(15) << tt.Vardas << setw(15) << tt.Pav << setw(25) << fixed << setprecision(2) << tt.Med; //Isvedimas
 			cout << endl;
 		}
 	}
 	Eiles.clear();
+}
+bool compareByName(const studentas &a, const studentas &b)
+{
+	return a.Vardas < b.Vardas;
 }
