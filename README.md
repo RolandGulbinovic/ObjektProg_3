@@ -3,5 +3,5 @@
 <p> main.cpp - Versija su masyvais </p>
 <p> main2.cpp - Versija su vektoriais </p>
 
-<p> main.cpp Visual studio duoda "0.1.exe has triggered a breakpoint" kai pasibaigia darbas su failu ir nerodo kur klaida(turbut su atmintim), tačiau terminalas neužsidaro ir išveda teisingus duomenys ir rezultatus </p>
-<p> Su vektoriais tokiu problemu nebuvo </p>
+<p> <strong>MAIN.CPP</strong> Visual studio duoda "<em>0.1.exe has triggered a breakpoint</em>*" kai pasibaigia darbas su failų ir nerodo kur klaida(turbut su atmintim), tačiau terminalas neužsidaro ir išveda teisingus duomenys ir rezultatus. Jeigu leidžiama programa per repl.it problemu nėra. </p>
+<p> Su vektoriais tokių problemų nebuvo </p>
