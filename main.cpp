@@ -1,39 +1,4 @@
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include <functional>
-#include <array>
-#include <iomanip>
-#include <fstream>
-
-using std::cout;
-using std::endl;
-using std::string;
-using std::cin;
-using std::vector;
-using std::sort;
-using std::setw;
-using std::setprecision;
-using std::fixed;
-using std::rand;
-using std::ifstream;
-using std::left;
-
-struct studentas {
-	string Vardas;
-	string Pav;
-	int nd;
-	int egz;
-	float GP;
-	float Med;
-};
-
-
-// VERSIJA SU VEKTORIAIS
-
-bool compareByName(const studentas& a, const studentas& b);
+#include "mybib.h"
 
 int main()
 {
@@ -241,11 +206,4 @@ int main()
 		}
 	}
 	Eiles.clear();
-}
-bool compareByName(const studentas &a, const studentas &b) //funkcija palyginimui
-{
-	if (a.Vardas != b.Vardas)
-		return a.Vardas < b.Vardas;
-	else
-		return a.Pav < b.Pav;
 }
