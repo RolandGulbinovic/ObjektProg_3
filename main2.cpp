@@ -46,7 +46,7 @@ int main()
 	int t;
 	int f;
 	int s;
-	int n = 0;
+	int n = 5;
 	
 
 	cout << "norite atlikti failo greicio testavima?" << endl;
@@ -54,7 +54,7 @@ int main()
 	if (f == 1) {
 		ifstream file1;
 		ofstream file;
-
+		ofstream blogas, geras;
 		for (int i = 0; i < 5; i++) {
 			cout << "kokio dydzio faila" << endl;
 			cin >> s;
@@ -67,7 +67,7 @@ int main()
 			file.open(fileName + ".txt");
 			for (int i = 0; i < s; i++) {
 				file << "Vardas" + to_string(i) << " " << "Pavarde" +to_string(i);
-				for (int i = 0; i < 15; i++)
+				for (int i = 0; i < 5; i++)
 					file << " " << rand() % 11;
 				file << " " << rand() % 11;
 				file << "\n";
@@ -79,8 +79,6 @@ int main()
 			file.close();
 			auto start1 = steady_clock::now();
 
-
-			
 			file1.open("C:/Users/rolan/Desktop/0.1.2/" + fileName + ".txt");
 
 			if (file1.is_open()) {
@@ -88,15 +86,11 @@ int main()
 				{
 					laik.GP = 0;
 					laik.Med = 0;
-					l++;
-					Eiles.reserve(l);
-					for (int i = 0; i < 15; i++)
+
+					for (int i = 0; i < 5; i++)
 					{
-						n++;
 						file1 >> laik.nd;
 						laik.GP = laik.nd + laik.GP;
-						ndf.reserve(n);
-						ndf.push_back(laik.nd);
 					}
 					file1 >> laik.egz;
 					if (n == 0)
@@ -105,7 +99,6 @@ int main()
 						laik.GP = laik.GP / (float)n;
 						laik.GP = 0.4 * laik.GP + 0.6 * (float)laik.egz; //GP skaiciavumas
 					}
-					ndf.clear();
 					Eiles.push_back(laik);
 				}
 				auto stop1 = steady_clock::now();
@@ -114,7 +107,7 @@ int main()
 				cout << "Nuskaitymas nuo " << fileName << " Uztruko: " << elapsed_seconds1.count() << endl;
 
 				auto start2 = steady_clock::now();
-				ofstream blogas, geras;
+
 				blogas.open("blogi.txt");
 				geras.open("geras.txt");
 				for (auto tt : Eiles) {
@@ -124,7 +117,7 @@ int main()
 					}
 					else if (tt.GP >= 5.0)
 					{
-						geras << setw(15) << tt.Vardas << setw(15) << tt.Pav << setw(25) << fixed << setprecision(2) << tt.GP;
+						geras << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
 						geras << '\n';
 					}
 				}
@@ -134,8 +127,10 @@ int main()
 				cout << "Duoemnu isvedimui i 2 failus uztruko " << elapsed_seconds2.count() << endl;
 				blogas.close();
 				geras.close();
+				
 			}
 			file1.close();
+			Eiles.clear();
 
 		}
 	}
