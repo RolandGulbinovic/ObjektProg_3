@@ -5,6 +5,8 @@
 #include <functional>
 #include <array>
 #include <iomanip>
+#include <fstream>
+#include <chrono>
 
 using std::cout;
 using std::endl;
@@ -16,6 +18,11 @@ using std::setw;
 using std::setprecision;
 using std::fixed;
 using std::rand;
+using std::ofstream;
+using std::ifstream;
+using std::fstream;
+using std::to_string;
+using namespace std::chrono;
 
 struct studentas {
 	string Vardas;
@@ -32,9 +39,98 @@ struct studentas {
 int main()
 {
 	vector<studentas> Eiles; // Vektorius
+	studentas laik;
+	vector<int> ndf;
 	int sk;
 	int l = 0;
 	int t;
+	int f;
+	int s;
+	int n = 0;
+
+	cout << "norite atlikti failo greicio testavima?" << endl;
+	cin >> f;
+	for (int i = 0; i < 5; i++) {
+		cout << "kokio dydzio faila" << endl;
+		cin >> s;
+
+
+		ofstream file;
+		auto start = steady_clock::now();
+		string  ss = to_string(s);
+		string fileName = "file" + ss;
+
+
+		file.open(fileName +".txt");
+		for (int i = 0; i < s; i++) {
+			file << "Vardas" << i << " " << "Pavarde" << i;
+			for (int i = 0; i < 15; i++)
+				file << " " << rand() % 11;
+			file << " " << rand() % 11;
+			file << "\n";
+		}
+		auto stop = steady_clock::now();
+		duration<double> elapsed_seconds = stop - start;
+		cout << " Kurimas failo uztruko: " << elapsed_seconds.count() << endl;
+
+		auto start1 = steady_clock::now();
+		if (file.is_open()) {
+			ifstream file;
+			file.open("C:/Users/rolan/Desktop/0.2v/0.2v/" + fileName);
+			while (file >> laik.Vardas >> laik.Pav)
+			{
+				laik.GP = 0;
+				laik.Med = 0;
+				l++;
+				Eiles.reserve(l);
+				for (int i = 0; i < n; i++)
+				{	
+					n++;
+					file >> laik.nd;
+					laik.GP = laik.nd + laik.GP;
+					ndf.reserve(n);
+					ndf.push_back(laik.nd);
+				}
+				file >> laik.egz;
+				if (n == 0)
+					laik.GP = 0; //jei n=0 tai kad nedalintu is 0
+				else {
+					laik.GP = laik.GP / (float)n;
+					laik.GP = 0.4 * laik.GP + 0.6 * (float)laik.egz; //GP skaiciavumas
+				}
+				ndf.clear();
+				Eiles.push_back(laik);
+			}
+			auto stop1 = steady_clock::now();
+			duration<double> elapsed_seconds1 = stop1 - start1;
+
+			cout << "Nuskaitymas nuo " << fileName << " Uztruko: " << elapsed_seconds1.count() << endl;
+			
+			auto start2 = steady_clock::now();
+			ofstream blogas, geras;
+			blogas.open("blogi.txt");
+			geras.open("geras.txt");
+			for (auto tt : Eiles) {
+				if (tt.GP < 5.0) {
+					blogas << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
+					blogas << '\n';
+				}
+				else if (tt.GP >= 5.0)
+				{
+					geras << setw(15) << tt.Vardas << setw(15) << tt.Pav << setw(25) << fixed << setprecision(2) << tt.GP;
+					geras << '\n';
+				}
+			}
+			auto stop2 = steady_clock::now();
+			duration<double> elapsed_seconds2 = stop2 - start2;
+			
+			cout << "Duoemnu isvedimui i 2 failus uztruko " << elapsed_seconds2.count() << endl;
+		}
+	}
+	
+
+
+
 	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
 
 	while (!(cin >> sk) || (sk != 1 && sk != 2))
@@ -55,7 +151,7 @@ int main()
 		cin.ignore(INT_MAX, '\n');
 	}
 	Eiles.reserve(l);
-	
+
 
 	for (int i = 0; i < l; i++) {
 		int n = 0;
@@ -99,8 +195,8 @@ int main()
 			cout << "Prasome ivesti visus namu darbu pazymius kai uzbaigete pildyti parasykite (-1)" << endl;
 
 			while (true)
-			{	
-				
+			{
+
 				while (!(cin >> laik.nd) || (laik.nd < 0 && laik.nd != -1))
 				{
 					cout << "ERROR:Ivesta klaidingai " << endl;
@@ -108,7 +204,7 @@ int main()
 					cin.ignore(INT_MAX, '\n');
 				}
 				if (laik.nd > 0) {
-					
+
 					n++;
 
 					nd.reserve(n);	// Kiekviena karta kai pridedu elementa rezervuoju n++ vietos
@@ -124,7 +220,7 @@ int main()
 
 			}
 		}
-		
+
 		cout << "Iveskite egzamino rez." << endl;
 		while (!(cin >> laik.egz) || laik.egz <= 0)
 		{
@@ -142,13 +238,13 @@ int main()
 				laik.GP = laik.GP / (float)n;
 				laik.GP = 0.4 * laik.GP + 0.6 * (float)laik.egz; //GP skaiciavumas
 			}
-			
+
 		}
 		else {
 
 			nd.reserve(n + 1); // rezervuoju daugiau vietos nes kaip paskutini elementa pridedu egz
 
-			nd[nd.size()-1] = laik.egz;
+			nd[nd.size() - 1] = laik.egz;
 
 			sort(nd.begin(), nd.end());
 
