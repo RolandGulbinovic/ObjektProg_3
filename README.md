@@ -22,7 +22,7 @@ Duomenų išvedimas į 2 failus: *0.115564 s*. <br/>
 **<p>Greičio testavimas failo su *100000* eilučių<p>** 
 Failo kurimas: *2.71142 s*. <br/>
 Nuskaitymas duomenų: *3.32167 s*. <br/>
-Rušiavimas į du skirtingus vektorius: *11.38453s*.<br/>
+Rušiavimas į du skirtingus vektorius: *1.38453s*.<br/>
 Duomenų išvedimas į 2 failus: *1.15684 s*. <br/>
 
 **<p>Greičio testavimas failo su *1000000* eilučių<p>** 
