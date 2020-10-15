@@ -1,39 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include <functional>
-#include <array>
-#include <iomanip>
-#include <fstream>
-#include <chrono>
-
-using std::cout;
-using std::endl;
-using std::string;
-using std::cin;
-using std::vector;
-using std::sort;
-using std::setw;
-using std::setprecision;
-using std::fixed;
-using std::rand;
-using std::ofstream;
-using std::ifstream;
-using std::fstream;
-using std::to_string;
-using namespace std::chrono;
-
-struct studentas {
-	string Vardas;
-	string Pav;
-	int nd;
-	int egz;
-	float GP;
-	float Med;
-};
-
-
+#include "mybib.h"
 // VERSIJA SU VEKTORIAIS
 
 int main()
@@ -49,20 +14,25 @@ int main()
 	int n = 5;
 	
 
-	cout << "norite atlikti failo greicio testavima?" << endl;
-	cin >> f;
+	cout << "Norite atlikti programos greicio testavima? 1- Taip || 2 - Ne" << endl;
+	while (!(cin >> f) || (f != 1 && f != 2))
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "ERORR: Ivesti galima tik 1 arba 2" << endl;
+
+	}
 	if (f == 1) {
 		ifstream file1;
 		ofstream file;
 		ofstream blogas, geras;
 		for (int i = 0; i < 5; i++) {
-			cout << "kokio dydzio faila" << endl;
+			cout << "Koks norimas studentu skaicius testavimui? (Pvz. 100, 1000, 10000...)" << endl;
 			cin >> s;
 
 			auto start = steady_clock::now();
 			string  ss = to_string(s);
 			string fileName = "file" + ss;
-
 
 			file.open(fileName + ".txt");
 			for (int i = 0; i < s; i++) {
@@ -75,11 +45,11 @@ int main()
 
 			auto stop = steady_clock::now();
 			duration<double> elapsed_seconds = stop - start;
-			cout << " Kurimas failo uztruko: " << elapsed_seconds.count() << endl;
+			cout << " Kurimas failo su " << s <<" studentais uztruko: " << elapsed_seconds.count() << endl;
 			file.close();
 			auto start1 = steady_clock::now();
 
-			file1.open("C:/Users/rolan/Desktop/0.1.2/" + fileName + ".txt");
+			file1.open("C:/Users/rolan/Desktop/0.1.2/" + fileName + ".txt"); // cia reikia pakeisti direktorija !!
 
 			if (file1.is_open()) {
 				while (file1 >> laik.Vardas >> laik.Pav)
@@ -104,12 +74,12 @@ int main()
 				auto stop1 = steady_clock::now();
 				duration<double> elapsed_seconds1 = stop1 - start1;
 
-				cout << "Nuskaitymas nuo " << fileName << " Uztruko: " << elapsed_seconds1.count() << endl;
+				cout << "Nuskaitymas failo su " << s <<" studentais Uztruko: " << elapsed_seconds1.count() << endl;
 
 				auto start2 = steady_clock::now();
 
-				blogas.open("blogi.txt");
-				geras.open("geras.txt");
+				blogas.open("geri_paz.txt");
+				geras.open("blogi_paz.txt");
 				for (auto tt : Eiles) {
 					if (tt.GP < 5.0) {
 						blogas << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
@@ -124,9 +94,10 @@ int main()
 				auto stop2 = steady_clock::now();
 				duration<double> elapsed_seconds2 = stop2 - start2;
 
-				cout << "Duoemnu isvedimui i 2 failus uztruko " << elapsed_seconds2.count() << endl;
+				cout << ss << "Duoemenu isvedimui i 2 failus uztruko: " << elapsed_seconds2.count() << endl;
 				blogas.close();
 				geras.close();
+				cout << "---------------------------------" << endl;
 				
 			}
 			file1.close();
