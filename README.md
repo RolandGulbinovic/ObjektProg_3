@@ -31,5 +31,5 @@ Nuskaitymas duomenų: *31.8439 s*. <br/>
 Rušiavimas į du skirtingus vektorius: *14.8307 s*.<br/>
 Duomenų išvedimas į 2 failus: *10.9243 s*. <br/>
 
-**main.cpp**
+**main2.cpp**
 <p>Šioje versijoje nenaudojami yra vektoriai blogiems ir geriems pažymiams. Duomenys yra rušiuojami tuo pačiu metu kai yra išvedinejami į du failus, tai čia truputi greitesnis programos veikimas.<p>
