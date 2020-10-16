@@ -2,34 +2,34 @@
 **main.cpp**
 **Debug'as**
 **<p>Greičio testavimas failo su *100* eilučių<p>** 
-Failo kurimas: *0.0034816 s*. <br/>
-Nuskaitymas duomenų: *0.0035321 s*. <br/>
-Rušiavimas į du skirtingus vektorius: *0.0013229s*.<br/>
-Duomenų išvedimas į 2 failus: *0.0048333 s*. <br/>
+Failo kurimas: *0.0012465 s*. <br/>
+Nuskaitymas duomenų: *0.0005486 s*. <br/>
+Rušiavimas į du skirtingus vektorius: *0.2.23e-05 s*.<br/>
+Duomenų išvedimas į 2 failus: *0.0005053 s*. <br/>
 
 **<p>Greičio testavimas failo su *1000* eilučių<p>** 
-Failo kurimas: *0.0281169 s*. <br/>
-Nuskaitymas duomenų: *0.0325428 s*. <br/>
-Rušiavimas į du skirtingus vektorius: *0.0153732s*.<br/>
-Duomenų išvedimas į 2 failus: *0.0128893 s*.<br/>
+Failo kurimas: *0.0046764 s*. <br/>
+Nuskaitymas duomenų: *0.0040105 s*. <br/>
+Rušiavimas į du skirtingus vektorius: *0.000223s*.<br/>
+Duomenų išvedimas į 2 failus: *0.0023247 s*.<br/>
 
 **<p>Greičio testavimas failo su *10000* eilučių<p>** 
-Failo kurimas: *0.273678 s*. <br/>
-Nuskaitymas duomenų: *0.31378 s*. <br/>
-Rušiavimas į du skirtingus vektorius: *0.123667s*.<br/>
-Duomenų išvedimas į 2 failus: *0.115564 s*. <br/>
+Failo kurimas: *0.0427399 s*. <br/>
+Nuskaitymas duomenų: *0.0.0376422 s*. <br/>
+Rušiavimas į du skirtingus vektorius: *0.0016462s*.<br/>
+Duomenų išvedimas į 2 failus: *0.0152214 s*. <br/>
 
 **<p>Greičio testavimas failo su *100000* eilučių<p>** 
-Failo kurimas: *2.71142 s*. <br/>
-Nuskaitymas duomenų: *3.32167 s*. <br/>
-Rušiavimas į du skirtingus vektorius: *1.38453s*.<br/>
-Duomenų išvedimas į 2 failus: *1.15684 s*. <br/>
+Failo kurimas: *0.406029 s*. <br/>
+Nuskaitymas duomenų: *0.387604 s*. <br/>
+Rušiavimas į du skirtingus vektorius: *0.0172279 s*.<br/>
+Duomenų išvedimas į 2 failus: *0.160913 s*. <br/>
 
 **<p>Greičio testavimas failo su *1000000* eilučių<p>** 
-Failo kurimas: *27.7005 s*. <br/>
-Nuskaitymas duomenų: *31.8439 s*. <br/>
-Rušiavimas į du skirtingus vektorius: *14.8307 s*.<br/>
-Duomenų išvedimas į 2 failus: *10.9243 s*. <br/>
+Failo kurimas: *4.0014 s*. <br/>
+Nuskaitymas duomenų: *3.84238 s*. <br/>
+Rušiavimas į du skirtingus vektorius: *0.197207 s*.<br/>
+Duomenų išvedimas į 2 failus: *1.61153 s*. <br/>
 
 **main2.cpp**
 <p>Šioje versijoje nenaudojami yra vektoriai blogiems ir geriems pažymiams. Duomenys yra rušiuojami tuo pačiu metu kai yra išvedinejami į du failus, tai čia truputi greitesnis programos veikimas.<p>
