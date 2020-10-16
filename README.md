@@ -1,6 +1,7 @@
 # V0.4
-**main.cpp**
-**Debug'as**
+**main.cpp** <br/>
+**Greičiai release'o**
+
 **<p>Greičio testavimas failo su *100* eilučių<p>** 
 Failo kurimas: *0.0012465 s*. <br/>
 Nuskaitymas duomenų: *0.0005486 s*. <br/>
