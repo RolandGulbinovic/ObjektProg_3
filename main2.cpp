@@ -11,7 +11,7 @@ int main()
 	int t;
 	int f;
 	int s;
-	int n = 5;
+	int n = 0;
 	
 
 	cout << "Norite atlikti programos greicio testavima? 1- Taip || 2 - Ne" << endl;
@@ -26,6 +26,14 @@ int main()
 		ifstream file1;
 		ofstream file;
 		ofstream blogas, geras;
+		cout<<"Kiek norite priskirti namu darbu failuose?"<<endl;
+		while (!(cin >> n))
+		{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "ERORR: Ivesti galima tik skaiciu" << endl;
+
+		}
 		for (int i = 0; i < 5; i++) {
 			cout << "Koks norimas studentu skaicius testavimui? (Pvz. 100, 1000, 10000...)" << endl;
 			cin >> s;
@@ -37,7 +45,7 @@ int main()
 			file.open(fileName + ".txt");
 			for (int i = 0; i < s; i++) {
 				file << "Vardas" + to_string(i) << " " << "Pavarde" +to_string(i);
-				for (int i = 0; i < 5; i++)
+				for (int i = 0; i < n; i++)
 					file << " " << rand() % 11;
 				file << " " << rand() % 11;
 				file << "\n";
@@ -57,7 +65,7 @@ int main()
 					laik.GP = 0;
 					laik.Med = 0;
 
-					for (int i = 0; i < 5; i++)
+					for (int i = 0; i < n; i++)
 					{
 						file1 >> laik.nd;
 						laik.GP = laik.nd + laik.GP;
