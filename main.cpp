@@ -1,4 +1,4 @@
-﻿#include "mybib.h"
+#include "mybib.h"
 // VERSIJA SU VEKTORIAIS
 
 int main()
@@ -25,19 +25,28 @@ int main()
 
 	}
 	if (f == 1) {
+		int p;
 		ifstream file1;
 		ofstream file;
 		ofstream blogas, geras;
-		cout<<"Kiek norite priskirti namu darbu visiems failams" <<endl;
+		cout << "Kiek priskirti namu darbu visiems failams?" << endl;
 		while (!(cin >> n))
 		{
-		cin.clear();
-		cin.ignore(INT_MAX, '\n');
-		cout << "ERORR: Ivesti galima tik skaičiu" << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "ERORR: Ivesti galima tik skaiciu" << endl;
 
 		}
-		for (int i = 0; i < 5; i++) {
-			cout << "Koks norimas studentu skaicius testavimui? (Pvz. 100, 1000, 10000...)" << endl;
+		cout << "Kiek failu norite generuoti?" << endl;
+		while (!(cin >> p))
+			{
+				cin.clear();
+				cin.ignore(INT_MAX, '\n');
+				cout << "ERORR: Ivesti galima tik skaiciu" << endl;
+
+			}
+		for (int i = 0; i < p; i++) {
+			cout << "Koks norimas "<<i+1<<"-ojo failo studentu skaicius testavimui? (Pvz. 100, 1000, 10000...)" << endl;
 			cin >> s;
 
 			auto start = steady_clock::now();
@@ -121,7 +130,7 @@ int main()
 				auto stop2 = steady_clock::now();
 				duration<double> elapsed_seconds2 = stop2 - start2;
 
-				cout << ss << "Duoemenu isvedimui i 2 failus uztruko: " << elapsed_seconds2.count() << endl;
+				cout << " Duoemenu isvedimui i 2 failus uztruko: " << elapsed_seconds2.count() << endl;
 				blogas.close();
 				geras.close();
 				cout << "---------------------------------" << endl;
