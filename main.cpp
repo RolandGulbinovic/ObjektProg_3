@@ -29,50 +29,58 @@ int main()
 	{
 		cout << "Kiek namu darbu jusu faile(testavimo failuose - 15; Kursiokai.txt - 5)" << endl;
 		cin >> n;
-		cout << "Iveskite failo vieta (C:/... .txt" << endl;
-		cin >> failas;
-		inFile.open(failas);
-		getline(inFile, header); //paima pirma eilute "Vardas Pavarde nd1 nd2 nd3...."
+		try {
+			cout << "Iveskite failo vieta (C:/... .txt" << endl;
+			cin >> failas;
 
-		if (inFile.is_open()) {
-			while (inFile >> laik.Vardas >> laik.Pav)
-			{
-				laik.GP = 0;
-				laik.Med = 0;
-				l++;
-				Eiles.reserve(l);
-				for (int i = 0; i < n; i++)
+			inFile.open(failas);
+			inFile.exceptions(ifstream::eofbit | ifstream::failbit | ifstream::badbit);
+
+			getline(inFile, header); //paima pirma eilute "Vardas Pavarde nd1 nd2 nd3...."
+
+			if (inFile.is_open()) {
+				while (inFile >> laik.Vardas >> laik.Pav)
 				{
-					inFile >> laik.nd;
-					laik.GP = laik.nd + laik.GP;
-					ndf.reserve(n);
-					ndf.push_back(laik.nd);
-				}
-				inFile >> laik.egz;
-				if (sk == 2)
-				{
-					if (n == 0)
-						laik.GP = 0; //jei n=0 tai kad nedalintu is 0
-					else {
-						laik.GP = laik.GP / (float)n;
-						laik.GP = 0.4 * laik.GP + 0.6 * (float)laik.egz; //GP skaiciavumas
+					laik.GP = 0;
+					laik.Med = 0;
+					l++;
+					Eiles.reserve(l);
+					for (int i = 0; i < n; i++)
+					{
+						inFile >> laik.nd;
+						laik.GP = laik.nd + laik.GP;
+						ndf.reserve(n);
+						ndf.push_back(laik.nd);
 					}
+					inFile >> laik.egz;
+					if (sk == 2)
+					{
+						if (n == 0)
+							laik.GP = 0; //jei n=0 tai kad nedalintu is 0
+						else {
+							laik.GP = laik.GP / (float)n;
+							laik.GP = 0.4 * laik.GP + 0.6 * (float)laik.egz; //GP skaiciavumas
+						}
 
-				}
-				else {
-					ndf.push_back(laik.egz);
-					
-					sort(ndf.begin(), ndf.end());
-					
-					if (ndf.size() % 2 != 0)
-						laik.Med = (float)ndf[(ndf.size()) / 2];
+					}
+					else {
+						ndf.push_back(laik.egz);
 
-					laik.Med = (float)(ndf[(ndf.size()-1) / 2] + ndf[ndf.size() / 2]) / (float)2.0;
+						sort(ndf.begin(), ndf.end());
+
+						if (ndf.size() % 2 != 0)
+							laik.Med = (float)ndf[(ndf.size()) / 2];
+
+						laik.Med = (float)(ndf[(ndf.size() - 1) / 2] + ndf[ndf.size() / 2]) / (float)2.0;
+					}
+					ndf.clear();
+					Eiles.push_back(laik);
 				}
-				ndf.clear();
-				Eiles.push_back(laik);
+
 			}
-				
+		}
+		catch (std::exception const& e) {
+			cout << "Error: Failo nera"  << endl;
 		}
 	}
 	else {
@@ -176,7 +184,7 @@ int main()
 			else {
 
 				nd.reserve(n + 1); // rezervuoju daugiau vietos nes kaip paskutini elementa pridedu egz
-				
+
 				nd.push_back(laik.egz);
 
 				sort(nd.begin(), nd.end());
@@ -184,20 +192,20 @@ int main()
 				if (nd.size() % 2 != 0)
 					laik.Med = (float)nd[(nd.size()) / 2];
 
-				laik.Med = (float)(nd[(nd.size()-1) / 2] + nd[(nd.size() / 2)]) / (float)2.0;
+				laik.Med = (float)(nd[(nd.size() - 1) / 2] + nd[(nd.size() / 2)]) / (float)2.0;
 			}
 			Eiles.push_back(laik); //Viska idedu i vektoriu
 		}
 	}
-	if (sk == 2) cout << setw(15)<< "Vardas" << setw(15) << "Pavarde" << setw(25) << "Galutinis Paz(vid.)" << endl;
+	if (sk == 2) cout << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(25) << "Galutinis Paz(vid.)" << endl;
 
-	else cout << setw(15)<< "Vardas" << setw(15) << "Pavarde" << setw(25) << "Galutinis Paz(med.)" << endl;
+	else cout << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(25) << "Galutinis Paz(med.)" << endl;
 
 	sort(Eiles.begin(), Eiles.end(), compareByName);
 	for (auto tt : Eiles) {
 		if (sk == 2)
 		{
-			cout <<setw(15)<< tt.Vardas << setw(15) << tt.Pav << setw(25) << fixed << setprecision(2) << tt.GP; ; //Isvedimas
+			cout << setw(15) << tt.Vardas << setw(15) << tt.Pav << setw(25) << fixed << setprecision(2) << tt.GP; ; //Isvedimas
 			cout << endl;
 		}
 		else {
