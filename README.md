@@ -1,5 +1,10 @@
 # V0.4
 **main.cpp** <br/>
+
+CPU - Intel Core I5-4690 3.50GHz
+RAM - 16GB
+HDD - Seagate Desktop ST3500418AS 3Gb/s
+
 **Greičiai release'o**
 
 **<p>Greičio testavimas failo su *100* eilučių<p>** 
