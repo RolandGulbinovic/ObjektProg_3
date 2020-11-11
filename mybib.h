@@ -33,3 +33,8 @@ struct studentas {
 	float GP;
 	float Med;
 };
+
+void KurtiFaila(int, int);
+void nuskaitymas(int, int, vector<studentas>&);
+void rusiavimas(vector<studentas>&, vector<studentas>&, vector<studentas>&, int);
+void isvedimas(vector<studentas>&, vector<studentas>&, vector<studentas>&, int);
