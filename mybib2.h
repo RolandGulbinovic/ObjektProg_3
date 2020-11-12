@@ -74,7 +74,7 @@ void nuskaitymas(int studentai, int sk, vector<studentas>& Eiles, int n)
 		Eiles.push_back(laik);
 	}
 
-	duration<double> elapsed_seconds = :high_resolution_clock::now() - start;
+	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
 	cout << "Skaitymas nuo failo uztruko: " << elapsed_seconds.count() << "s." << endl;
 }
 
