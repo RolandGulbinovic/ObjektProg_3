@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <fstream>
 #include <chrono>
+#include <list>
 
 using std::cout;
 using std::endl;
@@ -23,6 +24,7 @@ using std::ofstream;
 using std::ifstream;
 using std::fstream;
 using std::to_string;
+using std::list;
 using namespace std::chrono;
 
 struct studentas {
@@ -35,6 +37,6 @@ struct studentas {
 };
 
 void KurtiFaila(int, int);
-void nuskaitymas(int, int, vector<studentas>&);
-void rusiavimas(vector<studentas>&, vector<studentas>&, vector<studentas>&, int);
-void isvedimas(vector<studentas>&, vector<studentas>&, vector<studentas>&, int);
+void nuskaitymas(int, int, list<studentas>&,int);
+void rusiavimas(list<studentas>&, list<studentas>&, list<studentas>&, int);
+void isvedimas(list<studentas>&, list<studentas>&, list<studentas>&, int);
