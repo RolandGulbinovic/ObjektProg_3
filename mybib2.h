@@ -46,6 +46,7 @@ void nuskaitymas(int studentai, int sk, list<studentas>& Eiles, int n)
 		for (int i = 0; i < n; i++) {
 			file >> laik.nd;
 			laik.GP = laik.nd + laik.GP;
+			ndf.push_back(laik.nd);
 		}
 		file >> laik.egz;
 
@@ -64,17 +65,19 @@ void nuskaitymas(int studentai, int sk, list<studentas>& Eiles, int n)
 
 			ndf.sort();
 			list<int>::iterator it = ndf.begin();
-			float middle = *it;
-			cout << middle;
-			std::advance(it, ndf.size() / 2);
+			std::advance(it, ((ndf.size()-1) / 2));
+
 
 			if (ndf.size() % 2 != 0)
-				laik.GP = (float) middle;
+				laik.GP = (float) *it;
 
-			std::advance(it, (ndf.size() / 2) + 1);
-			laik.GP = (float)middle + (float)middle / (float)2.0;
+			else {
+				laik.GP = ((float)*it + (float)*it++) / (float)2.0;
+			}
 		}
+
 		Eiles.push_back(laik);
+		ndf.clear();
 	}
 
 	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
