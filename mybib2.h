@@ -1,9 +1,9 @@
 ﻿#include "mybib.h"
 
 void KurtiFaila(int, int);
-void nuskaitymas(int, int, vector<studentas>&, int);
-void isvedimas(vector<studentas>&, vector<studentas>&, vector<studentas>&, int);
-void rusiavimas(vector<studentas>&, vector<studentas>&, vector<studentas>&, int);
+void nuskaitymas(int, int, list<studentas>&, int);
+void isvedimas(list<studentas>&, list<studentas>&, list<studentas>&, int);
+void rusiavimas(list<studentas>&, list<studentas>&, list<studentas>&, int);
 
 void KurtiFaila(int nd, int studentai) {
 
@@ -26,16 +26,14 @@ void KurtiFaila(int nd, int studentai) {
 }
 
 
-void nuskaitymas(int studentai, int sk, vector<studentas>& Eiles, int n)
+void nuskaitymas(int studentai, int sk, list<studentas>& Eiles, int n)
 {
 	auto start = high_resolution_clock::now();
 	ifstream file;
-	vector <int> ndf;
+	list<int> ndf;
 
 	string  ss = to_string(studentai);
 	string fileName = "file" + ss;
-
-	ndf.reserve(1);
 	
 	file.open("C:/Users/rolan/Desktop/0.4.1/"+ fileName+ ".txt");
 	
@@ -61,16 +59,20 @@ void nuskaitymas(int studentai, int sk, vector<studentas>& Eiles, int n)
 		}
 		else {
 			laik.GP = 0;
-			ndf.reserve(n + 1); // rezervuoju daugiau vietos nes kaip paskutini elementa pridedu egz
+			int c = ndf.size();
+			ndf.push_front(laik.egz);
 
-			ndf[ndf.size() - 1] = laik.egz;
-
-			sort(ndf.begin(), ndf.end());
+			ndf.sort();
+			list<int>::iterator it = ndf.begin();
+			float middle = *it;
+			cout << middle;
+			std::advance(it, ndf.size() / 2);
 
 			if (ndf.size() % 2 != 0)
-				laik.Med = (float)ndf[(ndf.size()) / 2];
+				laik.GP = (float) middle;
 
-			laik.GP = (float)(ndf[ndf.size() / 2] + ndf[(ndf.size() + 1) / 2]) / (float)2.0;
+			std::advance(it, (ndf.size() / 2) + 1);
+			laik.GP = (float)middle + (float)middle / (float)2.0;
 		}
 		Eiles.push_back(laik);
 	}
@@ -79,7 +81,7 @@ void nuskaitymas(int studentai, int sk, vector<studentas>& Eiles, int n)
 	cout << "Skaitymas nuo failo uztruko: " << elapsed_seconds.count() << "s." << endl;
 }
 
-void rusiavimas(vector<studentas>& Eiles, vector<studentas>& geri_paz, vector<studentas>& blogi_paz, int studentai)
+void rusiavimas(list<studentas>& Eiles, list<studentas>& geri_paz, list<studentas>& blogi_paz, int studentai)
 {
 	auto start = high_resolution_clock::now();
 
@@ -97,7 +99,7 @@ void rusiavimas(vector<studentas>& Eiles, vector<studentas>& geri_paz, vector<st
 	cout << "Rusiavimas i 2 vektorius uztruko: " << elapsed_seconds.count() << "s." << endl;
 }
 
-void isvedimas(vector<studentas>& Eiles, vector<studentas>& geri_paz, vector<studentas>& blogi_paz, int studentai) {
+void isvedimas(list<studentas>& Eiles, list<studentas>& geri_paz, list<studentas>& blogi_paz, int studentai) {
 	auto start = high_resolution_clock::now();
 	ofstream geras, blogas;
 	blogas.open("blogi_paz.txt");
