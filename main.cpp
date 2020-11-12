@@ -5,7 +5,7 @@ int main()
 	int k;
 	int studentai;
 	int sk = 0;
-	vector <studentas> Eiles, blogi_paz, geri_paz;
+	list<studentas> Eiles, blogi_paz, geri_paz;
 
 	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
 
@@ -22,10 +22,9 @@ int main()
 		cout << "--------------------------" << endl;
 		cout << "kiek norite eiluciu faile?" << endl;
 		cin >> k;
-		KurtiFaila(5, k);
+
 		nuskaitymas(k, sk, Eiles, 5);
 		rusiavimas(Eiles, geri_paz, blogi_paz, k);
-		isvedimas(Eiles, geri_paz, blogi_paz, k);
 
 		Eiles.clear();
 		blogi_paz.clear();
