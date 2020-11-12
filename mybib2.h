@@ -60,6 +60,7 @@ void nuskaitymas(int studentai, int sk, vector<studentas>& Eiles, int n)
 			}
 		}
 		else {
+			laik.GP = 0;
 			ndf.reserve(n + 1); // rezervuoju daugiau vietos nes kaip paskutini elementa pridedu egz
 
 			ndf[ndf.size() - 1] = laik.egz;
@@ -69,7 +70,7 @@ void nuskaitymas(int studentai, int sk, vector<studentas>& Eiles, int n)
 			if (ndf.size() % 2 != 0)
 				laik.Med = (float)ndf[(ndf.size()) / 2];
 
-			laik.Med = (float)(ndf[ndf.size() / 2] + ndf[(ndf.size() + 1) / 2]) / (float)2.0;
+			laik.GP = (float)(ndf[ndf.size() / 2] + ndf[(ndf.size() + 1) / 2]) / (float)2.0;
 		}
 		Eiles.push_back(laik);
 	}
