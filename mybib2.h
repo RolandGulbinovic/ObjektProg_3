@@ -7,7 +7,6 @@ void rusiavimas(list<studentas>&, list<studentas>&, list<studentas>&, int);
 
 void KurtiFaila(int nd, int studentai) {
 
-	auto start = high_resolution_clock::now();
 	string  ss = to_string(studentai);
 	string fileName = "file" + ss;
 
@@ -21,8 +20,7 @@ void KurtiFaila(int nd, int studentai) {
 		file << "\n";
 	}
 	file.close();
-	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
-	cout << "Failo sukurimas uztruko: " << elapsed_seconds.count() << "s" << endl;
+
 }
 
 
@@ -34,9 +32,9 @@ void nuskaitymas(int studentai, int sk, list<studentas>& Eiles, int n)
 
 	string  ss = to_string(studentai);
 	string fileName = "file" + ss;
-	
-	file.open("C:/Users/rolan/Desktop/0.4.1/"+ fileName+ ".txt");
-	
+
+	file.open("C:/Users/rolan/Desktop/0.4.1/" + fileName + ".txt");
+
 	studentas laik;
 
 	while (file >> laik.Vardas >> laik.Pav)
@@ -65,15 +63,14 @@ void nuskaitymas(int studentai, int sk, list<studentas>& Eiles, int n)
 
 			ndf.sort();
 			list<int>::iterator it = ndf.begin();
-			std::advance(it, ((ndf.size()-1) / 2));
+			std::advance(it, ((ndf.size() - 1) / 2));
 
 
 			if (ndf.size() % 2 != 0)
-				laik.GP = (float) *it;
+				laik.GP = (float)*it;
 
-			else {
-				laik.GP = ((float)*it + (float)*it++) / (float)2.0;
-			}
+			laik.GP = ((float)*it + (float)*it++) / (float)2.0;
+			
 		}
 
 		Eiles.push_back(laik);
@@ -103,7 +100,6 @@ void rusiavimas(list<studentas>& Eiles, list<studentas>& geri_paz, list<studenta
 }
 
 void isvedimas(list<studentas>& Eiles, list<studentas>& geri_paz, list<studentas>& blogi_paz, int studentai) {
-	auto start = high_resolution_clock::now();
 	ofstream geras, blogas;
 	blogas.open("blogi_paz.txt");
 	for (auto tt : blogi_paz) { //isvedu du naujus vektorius i failus
@@ -118,7 +114,6 @@ void isvedimas(list<studentas>& Eiles, list<studentas>& geri_paz, list<studentas
 		geras << '\n';
 	}
 	geras.close();
-	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
-	cout << "Isvedimas i failus uztruko: " << elapsed_seconds.count() << "s" << endl;
-	
+
+
 }
