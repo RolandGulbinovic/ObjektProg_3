@@ -23,8 +23,10 @@ int main()
 		cout << "kiek norite eiluciu faile?" << endl;
 		cin >> k;
 
+		KurtiFaila(5, k);
 		nuskaitymas(k, sk, Eiles, 5);
 		rusiavimas(Eiles, geri_paz, blogi_paz, k);
+		isvedimas(Eiles, geri_paz, blogi_paz, k);
 
 		Eiles.clear();
 		blogi_paz.clear();
