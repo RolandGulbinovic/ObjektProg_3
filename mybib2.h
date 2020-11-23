@@ -2,8 +2,9 @@
 
 void KurtiFaila(int, int);
 void nuskaitymas(int, int, vector<studentas>&, int);
-void isvedimas(vector<studentas>&, vector<studentas>&, vector<studentas>&, int);
-void rusiavimas(vector<studentas>&, vector<studentas>&, vector<studentas>&, int);
+void isvedimas(vector<studentas>&, vector<studentas>&,  int);
+void rusiavimas(vector<studentas>&, vector<studentas>&, int);
+bool compareByGalut(const studentas& pirmas, const studentas& antras);
 
 void KurtiFaila(int nd, int studentai) {
 
@@ -36,9 +37,9 @@ void nuskaitymas(int studentai, int sk, vector<studentas>& Eiles, int n)
 	string fileName = "file" + ss;
 
 	ndf.reserve(1);
-	
-	file.open("C:/Users/rolan/Desktop/0.4.1/"+ fileName+ ".txt");
-	
+
+	file.open("C:/Users/rolan/Desktop/0.4.1/" + fileName + ".txt");
+
 	studentas laik;
 
 	while (file >> laik.Vardas >> laik.Pav)
@@ -79,41 +80,48 @@ void nuskaitymas(int studentai, int sk, vector<studentas>& Eiles, int n)
 	cout << "Skaitymas nuo failo uztruko: " << elapsed_seconds.count() << "s." << endl;
 }
 
-void rusiavimas(vector<studentas>& Eiles, vector<studentas>& geri_paz, vector<studentas>& blogi_paz, int studentai)
+void rusiavimas(vector<studentas>& Eiles, vector<studentas>& geri_paz, int studentai)
 {
 	auto start = high_resolution_clock::now();
 
+	sort(Eiles.begin(), Eiles.end(), compareByGalut);
+
+	studentas temp = Eiles.back();
 
 	for (auto tt : Eiles) { //rusiuoju į du naujus vektorius
-		if (tt.GP < 5.0) {
-			blogi_paz.push_back(tt);
+		if (temp.GP >= 5.0) {
+			geri_paz.push_back(temp);
+			Eiles.pop_back();
+			temp = Eiles.back();
 		}
-		else if (tt.GP >= 5.0)
-		{
-			geri_paz.push_back(tt);
-		}
+		else break;
 	}
+
 	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
 	cout << "Rusiavimas i 2 vektorius uztruko: " << elapsed_seconds.count() << "s." << endl;
 }
 
-void isvedimas(vector<studentas>& Eiles, vector<studentas>& geri_paz, vector<studentas>& blogi_paz, int studentai) {
+void isvedimas(vector<studentas>& Eiles, vector<studentas>& geri_paz,  int studentai) {
 	auto start = high_resolution_clock::now();
-	ofstream geras, blogas;
-	blogas.open("blogi_paz.txt");
-	for (auto tt : blogi_paz) { //isvedu du naujus vektorius i failus
-		blogas << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
-		blogas << '\n';
-	}
-
-	blogas.close();
+	ofstream blogas,geras;
 	geras.open("geri_paz.txt");
-	for (auto tt : geri_paz) {
+	for (auto tt : geri_paz) { //isvedu du naujus vektorius i failus
 		geras << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
 		geras << '\n';
+	}
+	blogas.close();
+
+	blogas.open("blogi_paz.txt");
+	for (auto tt : Eiles) { //isvedu du naujus vektorius i failus
+		blogas << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
+		blogas << '\n';
 	}
 	geras.close();
 	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
 	cout << "Isvedimas i failus uztruko: " << elapsed_seconds.count() << "s" << endl;
-	
+
+}
+
+bool compareByGalut(const studentas& pirmas, const studentas& antras) {
+	return pirmas.GP > antras.GP;
 }
