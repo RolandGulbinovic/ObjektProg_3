@@ -29,11 +29,11 @@ void nuskaitymas(int studentai, int sk, list<studentas>& Eiles, int n)
 	auto start = high_resolution_clock::now();
 	ifstream file;
 	list<int> ndf;
-
+	
 	string  ss = to_string(studentai);
 	string fileName = "file" + ss;
 
-	file.open("C:/Users/rolan/Desktop/0.4.1/" + fileName + ".txt");
+	file.open("C:/Users/rolan/source/repos/1.0v/" + fileName + ".txt");
 
 	studentas laik;
 
@@ -85,19 +85,22 @@ void rusiavimas(list<studentas>& Eiles, list<studentas>& geri_paz, int studentai
 {
 	auto start = high_resolution_clock::now();
 
-
+	for (auto tt : Eiles)
+	{
+		if (tt.GP < 5)
+			geri_paz.push_back(tt);
+	}
+	
 	auto result = std::remove_if(Eiles.begin(), Eiles.end(), [](const studentas& p)
 		{
 			return p.GP < 5;
 		});
 
-	geri_paz.insert(geri_paz.begin(), result, Eiles.end());
-
 	Eiles.erase(result, Eiles.end());
 
-
+	
 	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
-	cout << "Rusiavimas i 2 vektorius uztruko: " << elapsed_seconds.count() << "s." << endl;
+	cout << "Rusiavimas i 2 list'us uztruko: " << elapsed_seconds.count() << "s." << endl;
 }
 
 void isvedimas(list<studentas>& Eiles, list<studentas>& geri_paz, int studentai) {
@@ -118,5 +121,8 @@ void isvedimas(list<studentas>& Eiles, list<studentas>& geri_paz, int studentai)
 	geras.close();
 	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
 	cout << "Isvedimas i failus uztruko: " << elapsed_seconds.count() << "s" << endl;
-
+	
+}
+bool compareByGalut(const studentas& pirmas, const studentas& antras) {
+	return pirmas.GP > antras.GP;
 }
