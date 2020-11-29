@@ -5,7 +5,7 @@ int main()
 	int k;
 	int studentai;
 	int sk = 0;
-	list<studentas> Eiles, blogi_paz, geri_paz;
+	list<studentas> Eiles, geri_paz;
 
 	cout << "Norite gauti studentu mediana(1) ar Galutini pazymi(2)" << endl;
 
@@ -25,11 +25,10 @@ int main()
 
 		KurtiFaila(5, k);
 		nuskaitymas(k, sk, Eiles, 5);
-		rusiavimas(Eiles, geri_paz, blogi_paz, k);
-		isvedimas(Eiles, geri_paz, blogi_paz, k);
+		rusiavimas(Eiles, geri_paz,  k);
+		isvedimas(Eiles, geri_paz, k);
 
 		Eiles.clear();
-		blogi_paz.clear();
 		geri_paz.clear();
 	}
 
