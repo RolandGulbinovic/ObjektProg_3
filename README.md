@@ -26,4 +26,4 @@ HDD - Seagate Desktop ST3500418AS 3Gb/s <br/>
 # Naudojimo Instrukcija
 
 <p>Aplanke "List" turime versija su List tipo konteineriu. Strategija 2</p><br/>
-<p>Aplanke "Vector" turime versija su Vector tipo konteineriu Strategija 2</p><br/>c
+<p>Aplanke "Vector" turime versija su Vector tipo konteineriu Strategija 2</p><br/>
