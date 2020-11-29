@@ -33,7 +33,7 @@ void nuskaitymas(int studentai, int sk, list<studentas>& Eiles, int n)
 	string  ss = to_string(studentai);
 	string fileName = "file" + ss;
 
-	file.open("C:/Users/rolan/source/repos/1.0v/" + fileName + ".txt");
+	file.open(fileName + ".txt");
 
 	studentas laik;
 
