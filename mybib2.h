@@ -86,16 +86,16 @@ void rusiavimas(vector<studentas>& Eiles, vector<studentas>& geri_paz, int stude
 
 	sort(Eiles.begin(), Eiles.end(), compareByGalut);
 
-	studentas temp = Eiles.back();
 
-	for (auto tt : Eiles) { //rusiuoju į du naujus vektorius
-		if (temp.GP >= 5.0) {
-			geri_paz.push_back(temp);
-			Eiles.pop_back();
-			temp = Eiles.back();
-		}
-		else break;
-	}
+	auto result = std::remove_if(Eiles.begin(), Eiles.end(), [](const studentas& p)
+		{
+			return p.GP < 5;
+		});
+
+	geri_paz.insert(geri_paz.begin(), result, Eiles.end());
+
+	Eiles.erase(result, Eiles.end());
+
 
 	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
 	cout << "Rusiavimas i 2 vektorius uztruko: " << elapsed_seconds.count() << "s." << endl;
@@ -104,22 +104,26 @@ void rusiavimas(vector<studentas>& Eiles, vector<studentas>& geri_paz, int stude
 void isvedimas(vector<studentas>& Eiles, vector<studentas>& geri_paz,  int studentai) {
 	auto start = high_resolution_clock::now();
 	ofstream blogas,geras;
-	geras.open("geri_paz.txt");
+	blogas.open("blogas_paz.txt");
 	for (auto tt : geri_paz) { //isvedu du naujus vektorius i failus
-		geras << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
-		geras << '\n';
+		blogas << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
+		blogas << '\n';
 	}
 	blogas.close();
 
-	blogas.open("blogi_paz.txt");
+	geras.open("geras_paz.txt");
 	for (auto tt : Eiles) { //isvedu du naujus vektorius i failus
-		blogas << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
-		blogas << '\n';
+		geras << tt.Vardas << " " << tt.Pav << " " << fixed << setprecision(2) << tt.GP;
+		geras << '\n';
 	}
 	geras.close();
 	duration<double> elapsed_seconds = high_resolution_clock::now() - start;
 	cout << "Isvedimas i failus uztruko: " << elapsed_seconds.count() << "s" << endl;
 
+}
+
+bool compareByGalut(const studentas& pirmas, const studentas& antras) {
+	return pirmas.GP > antras.GP;
 }
 
 bool compareByGalut(const studentas& pirmas, const studentas& antras) {
