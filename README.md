@@ -1,5 +1,4 @@
 # V1.0
-**main.cpp** <br/>
 
 CPU - Intel Core I5-4690 3.50GHz <br/>
 RAM - 16GB <br/>
@@ -22,7 +21,7 @@ HDD - Seagate Desktop ST3500418AS 3Gb/s <br/>
 
 <p>Greičiai su pirma strategija yra labai panašus.<\p><\br>
 
-<p>Greičiai su antra strategija, kur duomenys yra trinami iš pagrindinio konteinerio, veikia greičiau negu su 1 strategija, ypač kai yra daug duomenu.Tačiau vektoriai yra greitesni negu list'ai kai duomenu yra pvz. 10000000.
+<p>Greičiai su antra strategija, kur duomenys yra trinami iš pagrindinio konteinerio, veikia greičiau negu su 1 strategija, ypač kai yra daug duomenu.Vektoriai yra greitesni negu list'ai kai duomenu yra daug pvz. 10 000 000.
   
 # Naudojimo Instrukcija
 
