@@ -14,7 +14,6 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
-using std::vector;
 using std::sort;
 using std::setw;
 using std::setprecision;
@@ -25,6 +24,7 @@ using std::ifstream;
 using std::fstream;
 using std::to_string;
 using std::list;
+
 using namespace std::chrono;
 
 struct studentas {
