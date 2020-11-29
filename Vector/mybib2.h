@@ -126,6 +126,3 @@ bool compareByGalut(const studentas& pirmas, const studentas& antras) {
 	return pirmas.GP > antras.GP;
 }
 
-bool compareByGalut(const studentas& pirmas, const studentas& antras) {
-	return pirmas.GP > antras.GP;
-}
