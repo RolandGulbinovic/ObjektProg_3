@@ -7,13 +7,15 @@ HDD - Seagate Desktop ST3500418AS 3Gb/s <br/>
 
 <p>Greičiai su 2 vektoriai </p></br>
 
-![Greiciai](https://imgur.com/HSMB1WL.png)
+![Greiciai vect](https://imgur.com/HSMB1WL.png)
 <p>Greičiai su 2 listais </p></br>
 
 ![Greiciai list](https://imgur.com/GYdexg3.png)
 
 <p>Greičiai su 1 vektoriu </p></br>
 
-![Greiciai list](https://imgur.com/a/lZuScYh)
+![Greiciai su 1 vektoriu](https://imgur.com/GLUQOd6.png)
 
 <p>Greičiai su 1 list'u </p></br>
+![Greiciai su 1 listu](https://imgur.com/6CX2im3.png)
+
