@@ -1,4 +1,4 @@
-# V1.0
+# V1.1
 
 CPU - Intel Core I5-4690 3.50GHz <br/>
 RAM - 16GB <br/>
