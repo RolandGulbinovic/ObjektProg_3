@@ -31,12 +31,12 @@ class Studentas {
 private:
 		string Vardas;
 		string Pav;
-		vector<int>nd;
+		int nd;
 		int egz;
 		float GP;
 public:
 	Studentas() {};
-	Studentas(string Vardas, string pav, vector<int>nd, int egz, float GP)
+	Studentas(string Vardas, string pav, int nd, int egz, float GP)
 	{
 		Vardas = Vardas;
 		Pav = pav;
@@ -46,9 +46,6 @@ public:
 	}
 
 
-	vector<int> getNd() {
-		return nd;
-	}
 	void setGp(double a) {
 		GP = a;
 	}
@@ -62,7 +59,7 @@ public:
 		return Vardas;
 	}
 	void setPavarde(string a) {
-		Vardas = a;
+		Pav = a;
 	}
 	string getPav() {
 		return Pav;
@@ -73,8 +70,8 @@ public:
 	int getEgz() {
 		return egz;
 	}
-	void KurtiFaila(int, int);
-	void nuskaitymas(int, int, vector<Studentas>&);
-	void rusiavimas(vector<Studentas>&, vector<Studentas>&, vector<Studentas>&, int);
-	void isvedimas(vector<Studentas>&, vector<Studentas>&, vector<Studentas>&, int);
+	inline void KurtiFaila(int, int);
+	inline void nuskaitymas(int, int, vector<Studentas>&);
+	inline void rusiavimas(vector<Studentas>&, vector<Studentas>&, vector<Studentas>&, int);
+	inline void isvedimas(vector<Studentas>&, vector<Studentas>&, vector<Studentas>&, int);
 };
