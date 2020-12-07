@@ -1,10 +1,11 @@
 
+#pragma once
 #include "Studentai.h"
- inline void KurtiFaila(int, int);
- inline void nuskaitymas(int, int, vector<Studentas>&, int);
- inline void isvedimas(vector<Studentas>&, vector<Studentas>&, int);
- inline void rusiavimas(vector<Studentas>&, vector<Studentas>&, int);
- inline bool compareByGalut(Studentas& pirmas, Studentas& antras);
+inline void KurtiFaila(int, int);
+inline void nuskaitymas(int, int, vector<Studentas>&, int);
+inline void isvedimas(vector<Studentas>&, vector<Studentas>&, int);
+inline void rusiavimas(vector<Studentas>&, vector<Studentas>&, int);
+inline bool compareByGalut(Studentas& pirmas, Studentas& antras);
 
 void KurtiFaila(int nd, int studentai) {
 
@@ -40,7 +41,7 @@ void nuskaitymas(int studentai, int sk, vector<Studentas>& Eiles, int n)
 	ndf.reserve(1);
 
 	file.open(fileName + ".txt");
-	
+
 	Studentas laik;
 
 	while (file >> vard >> pav)
@@ -73,7 +74,7 @@ void nuskaitymas(int studentai, int sk, vector<Studentas>& Eiles, int n)
 			ndf[ndf.size() - 1] = laik.getEgz();
 
 			sort(ndf.begin(), ndf.end());
-			
+
 			if (ndf.size() % 2 != 0) {
 				GP = (float)ndf[(ndf.size()) / 2];
 				laik.setGp(GP);
@@ -94,7 +95,7 @@ void isvedimas(vector<Studentas>& Eiles, vector<Studentas>& geri_paz, int studen
 	ofstream blogas, geras;
 	blogas.open("blogas_paz.txt");
 	for (auto tt : geri_paz) { //isvedu du naujus vektorius i failus
-		blogas << tt.getVardas() << " " <<tt.getPav() << " " << fixed << setprecision(2) << tt.getGp();
+		blogas << tt.getVardas() << " " << tt.getPav() << " " << fixed << setprecision(2) << tt.getGp();
 		blogas << '\n';
 	}
 	blogas.close();
@@ -115,7 +116,7 @@ void rusiavimas(vector<Studentas>& Eiles, vector<Studentas>& geri_paz, int stude
 
 	sort(Eiles.begin(), Eiles.end(), compareByGalut);
 
-	auto result = std::remove_if(Eiles.begin(), Eiles.end(), []( Studentas& p)
+	auto result = std::remove_if(Eiles.begin(), Eiles.end(), [](Studentas& p)
 		{
 			return p.getGp() < 5;
 		});
