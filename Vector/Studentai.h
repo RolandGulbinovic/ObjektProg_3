@@ -29,22 +29,40 @@ using namespace std::chrono;
 
 class Studentas {
 private:
-		string Vardas;
-		string Pav;
-		int nd;
-		int egz;
-		float GP;
+	string Vardas;
+	string Pav;
+	int nd;
+	int egz;
+	float GP;
 public:
 	Studentas() {};
-	Studentas(string Vardas, string pav, int nd, int egz, float GP)
+	Studentas(string Vardas, string pav, int nd, int egz)
 	{
 		Vardas = Vardas;
 		Pav = pav;
 		egz = egz;
 		nd = nd;
-		GP = GP;
 	}
 
+	~Studentas() {}; //destructor
+
+	Studentas(const Studentas& other) { //copy constructor
+		Vardas = other.Vardas;
+		Pav = other.Pav;
+		nd = other.nd;
+		egz = other.egz;
+		GP = other.GP;
+	}
+
+	Studentas& operator=(const Studentas& p) //Copy assignment operator
+	{
+		(this->Vardas) = p.Vardas;
+		(this->Pav) = p.Pav;
+		(this->nd) = p.nd;
+		(this->egz) = p.egz;
+		(this->GP) = p.GP;
+		return *this;
+	}
 
 	void setGp(double a) {
 		GP = a;
