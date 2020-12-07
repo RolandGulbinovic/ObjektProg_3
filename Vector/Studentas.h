@@ -1,10 +1,10 @@
 
 #include "Studentai.h"
- void KurtiFaila(int, int);
- void nuskaitymas(int, int, vector<Studentas>&, int);
- void isvedimas(vector<Studentas>&, vector<Studentas>&, int);
- void rusiavimas(vector<Studentas>&, vector<Studentas>&, int);
- bool compareByGalut(Studentas& pirmas, Studentas& antras);
+ inline void KurtiFaila(int, int);
+ inline void nuskaitymas(int, int, vector<Studentas>&, int);
+ inline void isvedimas(vector<Studentas>&, vector<Studentas>&, int);
+ inline void rusiavimas(vector<Studentas>&, vector<Studentas>&, int);
+ inline bool compareByGalut(Studentas& pirmas, Studentas& antras);
 
 void KurtiFaila(int nd, int studentai) {
 
@@ -46,7 +46,7 @@ void nuskaitymas(int studentai, int sk, vector<Studentas>& Eiles, int n)
 	while (file >> vard >> pav)
 	{
 		laik.setVardas(vard);
-
+		laik.setPavarde(pav);
 		laik.setGp(0);
 		float GP = 0;
 
