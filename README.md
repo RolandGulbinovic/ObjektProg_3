@@ -1,5 +1,7 @@
 # V1.1
-
+<p>Aplanke "Vector" turių darba su 2 .h failais</p><br/>
+<p>Aplanke "Vector_2" padaryta taisyklingiau (su 2 .cpp failais), bet sukuriau nauja aplanka, nes įkeliau po atsiskaitymo termino.
+  
 CPU - Intel Core I5-4690 3.50GHz <br/>
 RAM - 16GB <br/>
 HDD - Seagate Desktop ST3500418AS 3Gb/s <br/>
@@ -15,8 +17,6 @@ HDD - Seagate Desktop ST3500418AS 3Gb/s <br/>
 <img src="https://imgur.com/9vLcBcA.jpg"/>
   
 # Naudojimo Instrukcija
-
-<p>Aplanke "Vector" turime versija su Vector tipo konteineriu Strategija 2</p><br/>
 
 <p> Paleidžiant programą, prašoma yra ivesti  kokius rezultatus norite gauti, 1 arba 2<p/>
 
