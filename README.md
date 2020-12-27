@@ -1,4 +1,4 @@
-# V1.1
+# V1.5
 <p>Aplanke "Vector" turių darba su 2 .h failais</p><br/>
 <p>Aplanke "Vector_2" padaryta taisyklingiau (su 2 .cpp failais), bet sukuriau nauja aplanka, nes įkeliau po atsiskaitymo termino.
   
