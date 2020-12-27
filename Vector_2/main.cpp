@@ -1,5 +1,5 @@
 
-#include "Studentai.h"
+#include "Studentas.h"
 int main()
 {
 	int k;
