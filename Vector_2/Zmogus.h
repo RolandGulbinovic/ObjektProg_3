@@ -33,18 +33,11 @@ public:
     string Vardas;
     string Pav;
 
-    void setVardas(string a) {
-        Vardas = a;
-    }
+    virtual void setVardas(string a) = 0;
 
-    void setPav(string a) {
-        Pav = a;
-    }
+    virtual void setPav(string a) = 0;
 
-    string getVardas() {
-        return Vardas;
-    }
-    string getPav() {
-        return Pav;
-    }
+    virtual string getVardas() = 0;
+    virtual string getPav() = 0;
+
 };
