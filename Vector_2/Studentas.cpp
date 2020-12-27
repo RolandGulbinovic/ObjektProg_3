@@ -1,5 +1,6 @@
 
-#include "Studentai.h"
+
+#include "Studentas.h"
 #include <iostream>
 
 void Studentas::KurtiFaila(int nd, int studentai) {
@@ -42,7 +43,7 @@ void Studentas::nuskaitymas(int studentai, int sk, vector<Studentas>& Eiles, int
 	while (file >> vard >> pav)
 	{
 		laik.setVardas(vard);
-		laik.setPavarde(pav);
+		laik.setPav(pav);
 		laik.setGp(0);
 		float GP = 0;
 
@@ -52,7 +53,7 @@ void Studentas::nuskaitymas(int studentai, int sk, vector<Studentas>& Eiles, int
 		}
 		file >> egz;
 		laik.setEgz(egz);
-
+		
 		if (sk == 2) {
 			if (n == 0)
 				laik.setGp(0); //jei n=0 tai kad nedalintu is 0
