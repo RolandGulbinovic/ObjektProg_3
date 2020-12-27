@@ -36,6 +36,21 @@ public:
 		(this->GP) = p.GP;
 		return *this;
 	}
+	void setVardas(string a) {
+		Vardas = a;
+	}
+
+	void setPav(string a) {
+		Pav = a;
+	}
+
+	string getVardas() {
+		return Vardas;
+	}
+	string getPav() {
+		return Pav;
+	}
+
 	void setGp(double a) {
 		GP = a;
 	}
