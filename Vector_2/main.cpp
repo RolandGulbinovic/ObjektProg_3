@@ -22,7 +22,7 @@ int main()
 		cout << "kiek norite eiluciu faile?" << endl;
 		cin >> k;
 		a.KurtiFaila(5, k);
-		a.nuskaitymas(k, sk, Eiles, 5);
+		a.Nuskaitymas(k, sk, Eiles, 5);
 		a.rusiavimas(Eiles, geri_paz, k);
 		a.isvedimas(Eiles, geri_paz, k);
 
