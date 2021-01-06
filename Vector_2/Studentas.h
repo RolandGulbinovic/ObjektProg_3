@@ -64,9 +64,26 @@ public:
 	int getEgz() {
 		return egz;
 	}
-	void KurtiFaila(int, int);
-	void nuskaitymas(int, int, vector<Studentas>&, int);
-	void rusiavimas(vector<Studentas>&, vector<Studentas>&, int);
-	void isvedimas(vector<Studentas>&, vector<Studentas>&, int);
+		/// @param nd kiek namu darbu
+/// @param studentai studentu kiekis
+	void KurtiFaila(int nd, int studentai);
+
+
+	/// @param studentai studentu kiekis
+	/// @param sk mediana ar vidurkis
+	/// @param Eiles vektorius i kuri nuskaitomi visi studentai
+	/// @param n kiek namu darbu
+
+	void Nuskaitymas(int studentai, int sk, vector<Studentas>& Eiles, int n);
+
+	/// @param Eiles vektorius su visais studentais
+	/// @param studentai studentu kiekis
+	/// @param geri_paz vektorius su visais gerais pazymiais
+	void rusiavimas(vector<Studentas>& Eiles, vector<Studentas>& geri_paz, int studentai);
+
+	/// @param Eiles vektorius su visais studentais
+	/// @param studentai studentu kiekis
+	/// @param geri_paz vektorius su visais gerais pazymiais
+	void isvedimas(vector<Studentas>& Eiles, vector<Studentas>& geri_paz, int studentai);
 };
 bool compareByGalut(Studentas&, Studentas&);
