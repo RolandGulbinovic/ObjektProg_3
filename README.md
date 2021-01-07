@@ -4,7 +4,7 @@ RAM - 16GB <br/>
 HDD - Seagate Desktop ST3500418AS 3Gb/s <br/>
 
 # Naudojimo Instrukcija
-1.5v.exe
+Release aplanke, turime idiegimo faila setup.exe, kuris idiegia programa. AppWithDLL.exe ir .dll failus.
 
 <p> Paleidžiant programą, prašoma yra ivesti  kokius rezultatus norite gauti, 1 arba 2<p/>
 
